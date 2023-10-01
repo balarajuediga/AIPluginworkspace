@@ -1,0 +1,53 @@
+read data from excelsheet
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelReader {
+    public static void main(String[] args) {
+        String excelFilePath = "path/to/excel/file.xlsx";
+
+        try (FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
+             Workbook workbook = new XSSFWorkbook(inputStream)) {
+
+            Sheet sheet = workbook.getSheetAt(0);
+            for (Row row : sheet) {
+                for (Cell cell : row) {
+                    switch (cell.getCellType()) {
+                        case STRING:
+                            System.out.print(cell.getStringCellValue() + "\t");
+                            break;
+                        case NUMERIC:
+                            System.out.print(cell.getNumericCellValue() + "\t");
+                            break;
+                        case BOOLEAN:
+                            System.out.print(cell.getBooleanCellValue() + "\t");
+                            break;
+                        default:
+                            System.out.print("\t");
+                    }
+                }
+                System.out.println();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+ 
+public class AddTwoNumbers {
+    public static void main(String[] args) {
+        int num1 = 5;
+        int num2 = 10;
+        
+        int sum = num1 + num2;
+        
+        System.out.println("Sum of " + num1 + " and " + num2 + " is: " + sum);
+    }
+}
+ 

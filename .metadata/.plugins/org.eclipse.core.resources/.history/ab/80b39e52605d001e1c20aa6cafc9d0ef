@@ -1,0 +1,13 @@
+source.. = src/
+output.. = bin/
+bin.includes = plugin.xml,\
+               META-INF/,\
+               .,\
+               icons/,\
+               lib/spring-core-6.0.11.jar,\
+               lib/spring-web-6.0.11.jar,\
+               lib/spring-webflux-6.0.11.jar,\
+               lib/reactor-core-3.5.9.jar,\
+               lib/reactive-streams-1.0.4.jar,\
+               lib/lombok-1.18.28.jar,\
+               lib/micrometer-observation-1.11.3.jar

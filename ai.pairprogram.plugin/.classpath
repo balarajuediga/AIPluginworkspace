@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient-4.5.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lombok-1.18.28.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/micrometer-commons-1.11.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/micrometer-observation-1.11.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-buffer-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-codec-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-codec-dns-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-codec-http2-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-codec-http-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-codec-socks-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-common-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-handler-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-handler-proxy-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-resolver-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-resolver-dns-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-resolver-dns-classes-macos-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-resolver-dns-native-macos-4.1.97.Final-osx-x86_64.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-transport-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-transport-classes-epoll-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-transport-native-epoll-4.1.97.Final-linux-x86_64.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netty-transport-native-unix-common-4.1.97.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/reactive-streams-1.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/reactor-core-3.5.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/reactor-netty-1.1.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/reactor-netty-core-1.1.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/reactor-netty-http-1.1.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/rxjava-3.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-beans-6.0.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-core-6.0.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-web-5.3.15.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-web-6.0.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-webflux-5.3.15.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-webflux-6.0.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-webmvc-6.0.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

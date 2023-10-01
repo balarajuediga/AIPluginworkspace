@@ -1,0 +1,169 @@
+package ai.pairprogram.plugin.handlers;
+
+import static ai.pairprogram.plugin.util.LoadConfiguration.END_INDEX;
+import static ai.pairprogram.plugin.util.LoadConfiguration.END_INDEX1;
+import static ai.pairprogram.plugin.util.LoadConfiguration.MODEL;
+import static ai.pairprogram.plugin.util.LoadConfiguration.NEXTLINE;
+import static ai.pairprogram.plugin.util.LoadConfiguration.SPACE;
+import static ai.pairprogram.plugin.util.LoadConfiguration.START_INDEX;
+import static ai.pairprogram.plugin.util.LoadConfiguration.START_INDEX1;
+import static ai.pairprogram.plugin.util.LoadConfiguration.TOKEN;
+import static ai.pairprogram.plugin.util.LoadConfiguration.URL;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
+import org.eclipse.ui.texteditor.ITextEditor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import ai.pairprogram.plugin.model.GPTRequest;
+import ai.pairprogram.plugin.model.GPTResponse;
+import reactor.core.publisher.Mono;
+
+public class AIPairProgramHandler extends AbstractHandler {
+	private final MessageConsoleStream stream=consolePrinting();
+
+	@Override
+	public Mono<IEditorPart> execute(ExecutionEvent event) throws ExecutionException {
+		stream.println("****************Welcome to AI Pair Programming*************");
+
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IEditorPart activeEditor = page.getActiveEditor();
+
+		if (activeEditor instanceof ITextEditor) {
+			ITextEditor textEditor = (ITextEditor) activeEditor;
+			IDocument document = textEditor.getDocumentProvider().getDocument(activeEditor.getEditorInput());
+			ITextSelection textSelection = (ITextSelection) textEditor.getSelectionProvider().getSelection();
+			
+			 Display.getDefault().asyncExec(() -> {
+		            try {
+		                ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getDefault().getActiveShell());
+		                dialog.run(true, true, new IRunnableWithProgress() {
+		                    @Override
+		                    public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+		                    	
+		                        monitor.beginTask("Processing...", IProgressMonitor.UNKNOWN);
+		                     //   Thread.sleep(9000); // Simulate a 3-second processing delay
+		                        if (textSelection instanceof ITextSelection) {
+		            				String selectedText = ((ITextSelection) textSelection).getText();
+		            				if(!selectedText.isBlank() ) {
+		            					int offset = textSelection.getOffset();
+		            					// from GPT
+		            					stream.println("****************Making a call to GPT Model Service*************");
+		            					getDatafroFromFlaskAPIThrouhWebclient(selectedText).subscribe(responseGpt -> {
+		            						try {
+		            							displayTextInIntervals(activeEditor, document, offset, selectedText,
+		            									responseGpt.getChoices().get(0).getMessage().getContent());
+		            						} catch (BadLocationException e) {
+		            							// TODO Auto-generated catch block
+		            							e.printStackTrace();
+		            						}
+		            					});
+
+		            					/*
+		            					 * //from Flask API getDatafroFromFlaskAPIThrouhWebclient(selectedText,
+		            					 * "java").subscribe(responeText -> { displayTextInIntervals(activeEditor,
+		            					 * document, offset, selectedText, responeText); });
+		            					 */
+		            					
+		            				}
+		            			}
+		                        monitor.done();
+		                    }
+		                });
+		            } catch (InvocationTargetException | InterruptedException e) {
+		                e.printStackTrace();
+		            }
+		        });
+
+			
+
+		}
+		stream.println("****************Completed Your Request*************");
+		return Mono.just(activeEditor);
+	}
+
+	private MessageConsoleStream consolePrinting() {
+		MessageConsole console = new MessageConsole("My Console", null);
+		ConsolePlugin.getDefault().getConsoleManager().addConsoles(new IConsole[] { console });
+
+		// Optionally, make this console the active console
+		ConsolePlugin.getDefault().getConsoleManager().showConsoleView(console);
+
+		// Get a stream for writing to the console
+		MessageConsoleStream stream = console.newMessageStream();
+		return stream;
+	}
+
+	private Mono<GPTResponse> getDatafroFromFlaskAPIThrouhWebclient(String hint) {
+		GPTRequest gptRequest = new GPTRequest(MODEL, hint);
+		return WebClient.builder().clientConnector(new ReactorClientHttpConnector()).baseUrl(URL).build().post()
+				.uri(uriBuilder -> uriBuilder.build()).header(HttpHeaders.AUTHORIZATION, TOKEN).bodyValue(gptRequest)
+				.exchangeToMono(resp -> resp.bodyToMono(GPTResponse.class));
+	}
+
+	private Mono<String> getDatafroFromFlaskAPIThrouhWebclient(String hint, String lang) {
+		String baseurl = "https://ashishsinghaus-super-trout-rxv66xj97q73pg4p-5000.app.github.dev";
+		WebClient webClient = WebClient.builder().baseUrl(baseurl).build();
+		return webClient.get().uri(uriBuilder -> uriBuilder.queryParam("hint", hint).queryParam("lang", lang).build())
+				.retrieve().bodyToMono(String.class);
+	}
+
+	private Mono<IEditorPart> displayTextInIntervals(IEditorPart activeEditor, IDocument document, int offset,
+			String selectedText, String responseText) throws BadLocationException {
+		String finalResponseText = getRequiredResponse(responseText);
+		String[] splitRespText = finalResponseText.split(" ");
+		int actualOffset = offset + selectedText.length() + 1;
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				try {
+					document.replace(actualOffset - 1, 0, NEXTLINE);
+					int temp = actualOffset;
+					for (String token : splitRespText) {
+						document.replace(temp, 0, (token + SPACE));
+						temp = temp + token.length() + 1;
+						Thread.sleep(3);
+					}
+				} catch (BadLocationException | InterruptedException e) {
+					e.printStackTrace();
+				}
+				activeEditor.doSave(null);
+			}
+		});
+		return Mono.just(activeEditor);
+
+	}
+
+	private String getRequiredResponse(String responseText) {
+		String finalResponseText;
+		if (!responseText.isBlank() && responseText.contains(START_INDEX)) {
+			finalResponseText = responseText.substring(responseText.indexOf(START_INDEX) + 7);
+			finalResponseText = finalResponseText.substring(1, finalResponseText.indexOf(END_INDEX));
+		} else if (!responseText.isBlank() && responseText.contains(START_INDEX1)) {
+			finalResponseText = responseText.substring(responseText.indexOf(START_INDEX1) + 3);
+			finalResponseText = finalResponseText.substring(1, finalResponseText.indexOf(END_INDEX1));
+		} else {
+			finalResponseText = responseText;
+		}
+		return finalResponseText;
+	}
+}

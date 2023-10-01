@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="AI Testing Puging">
+   </description>
+   <feature url="features/ai.pairprogram.feature_1.0.0.202309181849.jar" id="ai.pairprogram.feature" version="1.0.0.202309181849">
+      <category name="AIPlugin"/>
+   </feature>
+   <category-def name="AIPlugin" label="AIPlugin"/>
+</site>

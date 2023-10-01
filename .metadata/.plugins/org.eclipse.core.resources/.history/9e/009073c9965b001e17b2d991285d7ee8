@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+package ai.pairprogram.plugin.util;
+
+import java.util.Properties;
+
+/**
+ * 
+ */
+public class LoadConfiguration {
+
+private static final String MODEL = "gpt-3.5-turbo";
+private static final String URL ="https://api.openai.com/v1/chat/completions";
+private static final String TOKEN ="Bearer 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";
+private static final String START_INDEX = "```java";
+private static final String END_INDEX ="```";
+private static final String START_INDEX1 = "```";
+private static final String END_INDEX1 ="``";
+}

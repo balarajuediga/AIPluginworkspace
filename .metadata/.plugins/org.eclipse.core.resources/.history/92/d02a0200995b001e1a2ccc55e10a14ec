@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="ai.pairprogram.plugin.commands.category"
+            name="Sample Category">
+      </category>
+      <command
+            categoryId="ai.pairprogram.plugin.commands.category"
+            name="Sample Command"
+            id="ai.pairprogram.plugin.commands.aiCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="ai.pairprogram.plugin.handlers.AIpairProgramHandler"
+            commandId="ai.pairprogram.plugin.commands.aiCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="ai.pairprogram.plugin.commands.aiCommand"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+TAB">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="ai.pairprogram.plugin.menus.sampleMenu"
+               label="AI Pair Program"
+               mnemonic="M">
+            <command
+                  commandId="ai.pairprogram.plugin.commands.aiCommand"
+                  id="ai.pairprogram.plugin.menus.sampleCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+     
+   </extension>
+
+</plugin>

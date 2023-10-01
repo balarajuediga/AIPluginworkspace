@@ -1,0 +1,7 @@
+Display.getDefault().asyncExec(() -> {
+            MessageDialog.openInformation(
+                HandlerUtil.getActiveShell(event),
+                "In-Progress",
+                "Switching between editors or views in progress..."
+            );
+        });

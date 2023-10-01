@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>.org.eclipse.jdt.core.external.folders</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>.link1</name>
+			<type>2</type>
+			<location>C:/Users/DESLA T460S/.p2/pool/plugins/org.apache.axis_1.4.0.v201411182030/lib</location>
+		</link>
+		<link>
+			<name>.link2</name>
+			<type>2</type>
+			<location>C:/Users/DESLA T460S/.p2/pool/plugins/org.eclipse.m2e.archetype.common_3.2.103.20230102-2253</location>
+		</link>
+		<link>
+			<name>.link3</name>
+			<type>2</type>
+			<location>C:/Users/DESLA T460S/.p2/pool/plugins/org.eclipse.m2e.maven.runtime_3.9.100.20230519-1558</location>
+		</link>
+	</linkedResources>
+</projectDescription>

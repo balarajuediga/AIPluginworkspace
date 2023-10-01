@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package ai.pairprogram.plugin.util;
+
+/**
+ * 
+ */
+public enum LanguageEnum {
+	
+	JAVA(".java","Java"),PROPERTIES(".properties", "Property");
+	private String lang;
+	
+
+}

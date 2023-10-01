@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.eclipse.ui.handlers.HandlerUtil"/>
+    <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
+    <fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
+    <fullyQualifiedTypeName name="org.eclipse.swt.events.KeyEvent"/>
+    <fullyQualifiedTypeName name="org.eclipse.swt.events.KeyListener"/>
+    <fullyQualifiedTypeName name="ai.pairprogram.plugin.util.LoadConfiguration"/>
+    <fullyQualifiedTypeName name="org.eclipse.ui.statushandlers.StatusManager"/>
+    <fullyQualifiedTypeName name="org.eclipse.core.runtime.Status"/>
+    <fullyQualifiedTypeName name="org.eclipse.ui.handlers.RegistryToggleState"/>
+    <fullyQualifiedTypeName name="org.eclipse.jface.commands.RadioState"/>
+    <fullyQualifiedTypeName name="org.eclipse.ui.handlers.RadioState"/>
+    <fullyQualifiedTypeName name="org.eclipse.jface.action.IStatusLineManager"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="ai.pairprogram.plugin.util.LanguageEnum"/>
+    <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
+</qualifiedTypeNameHistroy>

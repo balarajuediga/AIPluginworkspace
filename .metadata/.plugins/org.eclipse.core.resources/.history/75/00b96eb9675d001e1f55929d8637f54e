@@ -1,0 +1,21 @@
+source.. = src/
+output.. = bin/
+bin.includes = plugin.xml,\
+               META-INF/,\
+               .,\
+               icons/,\
+               lib/httpclient-4.5.13.jar,\
+               lib/lombok-1.18.28.jar,\
+               lib/reactive-streams-1.0.4.jar,\
+               lib/reactor-core-3.5.9.jar,\
+               lib/reactor-netty-1.1.10.jar,\
+               lib/reactor-netty-core-1.1.10.jar,\
+               lib/reactor-netty-http-1.1.10.jar,\
+               lib/rxjava-3.1.1.jar,\
+               lib/spring-beans-5.3.15.jar,\
+               lib/spring-beans-6.0.11.jar,\
+               lib/spring-core-5.3.15.jar,\
+               lib/spring-core-6.0.11.jar,\
+               lib/spring-web-6.0.11.jar,\
+               lib/spring-webflux-6.0.11.jar,\
+               lib/spring-webmvc-6.0.11.jar

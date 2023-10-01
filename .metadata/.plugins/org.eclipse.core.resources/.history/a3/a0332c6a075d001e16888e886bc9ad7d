@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package ai.pairprogram.plugin.util;
+
+/**
+ * 
+ */
+public enum LanguageEnum {
+	
+	JAVA(".java","Java"),PROPERTIES(".properties", "Property");
+	LanguageEnum(String string, String string2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	private String lang;
+	public String getLang(String fileExnt) {
+		
+		return null;
+	}
+	
+
+}
