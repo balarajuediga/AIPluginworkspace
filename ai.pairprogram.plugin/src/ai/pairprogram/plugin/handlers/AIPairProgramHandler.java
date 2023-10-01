@@ -95,12 +95,15 @@ public class AIPairProgramHandler extends AbstractHandler {
 				.exchangeToMono(resp -> resp.bodyToMono(GPTResponse.class));
 	}
 
-	private Mono<String> getDatafroFromFlaskAPIThrouhWebclient(String hint, String lang) {
-		String baseurl = "https://ashishsinghaus-super-trout-rxv66xj97q73pg4p-5000.app.github.dev";
-		WebClient webClient = WebClient.builder().baseUrl(baseurl).build();
-		return webClient.get().uri(uriBuilder -> uriBuilder.queryParam("hint", hint).queryParam("lang", lang).build())
-				.retrieve().bodyToMono(String.class);
-	}
+	/*
+	 * private Mono<String> getDatafroFromFlaskAPIThrouhWebclient(String hint,
+	 * String lang) { String baseurl =
+	 * "https://ashishsinghaus-super-trout-rxv66xj97q73pg4p-5000.app.github.dev";
+	 * WebClient webClient = WebClient.builder().baseUrl(baseurl).build(); return
+	 * webClient.get().uri(uriBuilder -> uriBuilder.queryParam("hint",
+	 * hint).queryParam("lang", lang).build()) .retrieve().bodyToMono(String.class);
+	 * }
+	 */
 
 	private Mono<IEditorPart> displayTextInIntervals(IEditorPart activeEditor, IDocument document, int offset,
 			String selectedText, String responseText) throws BadLocationException {
