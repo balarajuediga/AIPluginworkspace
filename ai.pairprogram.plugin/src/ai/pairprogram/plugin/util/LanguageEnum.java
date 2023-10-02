@@ -3,9 +3,6 @@
  */
 package ai.pairprogram.plugin.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 
  */
